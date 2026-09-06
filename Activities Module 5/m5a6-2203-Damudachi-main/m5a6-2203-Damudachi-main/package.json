@@ -1,0 +1,18 @@
+{
+  "name": "module-5-activity-6-joins-and-reporting",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "pg": "^8.11.0"
+  },
+  "devDependencies": {
+    "pg-mem": "^3.0.0",
+    "vitest": "^2.0.0"
+  },
+  "author": "Tjakoen Stolk",
+  "license": "MIT"
+}

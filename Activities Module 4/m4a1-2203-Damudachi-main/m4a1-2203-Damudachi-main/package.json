@@ -1,0 +1,14 @@
+{
+  "name": "module-4-activity-1-node-basics",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "devDependencies": {
+    "vitest": "^2.0.0"
+  },
+  "author": "Tjakoen Stolk",
+  "license": "MIT"
+}

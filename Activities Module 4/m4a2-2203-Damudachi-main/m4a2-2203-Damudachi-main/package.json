@@ -1,0 +1,19 @@
+{
+  "name": "module-4-activity-2-express-server",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "express": "^4.19.0"
+  },
+  "devDependencies": {
+    "supertest": "^7.0.0",
+    "vitest": "^2.0.0"
+  },
+  "author": "Tjakoen Stolk",
+  "license": "MIT"
+}

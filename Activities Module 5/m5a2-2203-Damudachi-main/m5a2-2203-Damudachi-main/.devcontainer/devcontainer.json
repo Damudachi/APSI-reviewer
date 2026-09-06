@@ -1,0 +1,14 @@
+{
+  "name": "HAU Codespace (web)",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:20",
+  "postCreateCommand": "if [ -f package.json ]; then npm install; fi",
+  "forwardPorts": [3000],
+  "portsAttributes": {
+    "3000": { "label": "API server", "onAutoForward": "notify" }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": ["dbaeumer.vscode-eslint"]
+    }
+  }
+}

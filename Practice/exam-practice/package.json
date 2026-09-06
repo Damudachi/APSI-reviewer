@@ -1,0 +1,18 @@
+{
+  "name": "midterm-exam-practice",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "express": "^4.19.0",
+    "pg": "^8.11.0"
+  },
+  "devDependencies": {
+    "pg-mem": "^3.0.0",
+    "supertest": "^7.0.0",
+    "vitest": "^2.0.0"
+  }
+}
