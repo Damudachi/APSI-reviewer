@@ -1,0 +1,52 @@
+name: Autograde
+
+# Runs the test suite on every push so graders see a pass/fail at a glance.
+on:
+  push:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        id: tests
+        run: npx vitest run --reporter=default --reporter=json --outputFile=test-results.json
+
+      - name: Write grading summary
+        if: always()
+        run: |
+          node <<'EOF' >> "$GITHUB_STEP_SUMMARY"
+          const fs = require('fs');
+          let r;
+          try { r = JSON.parse(fs.readFileSync('test-results.json', 'utf8')); }
+          catch { console.log('## ❌ Tests did not run (build/install error)'); process.exit(0); }
+
+          const tests = r.testResults.flatMap(f => f.assertionResults);
+          const passed = tests.filter(t => t.status === 'passed').length;
+          const total = tests.length;
+
+          console.log(`## ${passed === total ? '✅' : '❌'} ${passed} / ${total} tests passed`);
+          console.log('');
+          console.log('| Result | Test |');
+          console.log('| --- | --- |');
+          for (const t of tests) {
+            const icon = t.status === 'passed' ? '✅' : '❌';
+            console.log(`| ${icon} | ${t.fullName || t.title} |`);
+          }
+          EOF
