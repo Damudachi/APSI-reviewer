@@ -1,6 +1,5 @@
 # 🎓 APSI Backend Practical Midterm Exam Study Guide & Cheat Sheet
 
-**Exam Date & Time:** Tomorrow @ 5:00 PM  
 **Tech Stack:** Node.js, Express.js, PostgreSQL (`pg`), RESTful APIs
 
 ---
