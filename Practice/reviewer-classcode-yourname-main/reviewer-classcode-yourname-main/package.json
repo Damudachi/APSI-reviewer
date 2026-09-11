@@ -1,0 +1,22 @@
+{
+  "name": "apsi-reviewer-library-loans",
+  "private": true,
+  "type": "module",
+  "description": "APSI midterm practical exam - HAUnted Sightings API and database. Solve the TODOs, run the app, then answer the Canvas quiz.",
+  "scripts": {
+    "start": "node app.js",
+    "report": "node report.js",
+    "test": "vitest run",
+    "exam": "node exam-report.mjs"
+  },
+  "dependencies": {
+    "express": "^4.19.0",
+    "pg": "^8.11.0",
+    "pg-mem": "^3.0.0"
+  },
+  "author": "Tjakoen Stolk",
+  "license": "MIT",
+  "devDependencies": {
+    "vitest": "^2.1.9"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "name": "final-boss-midterm-practice",
+  "private": true,
+  "type": "module",
+  "description": "APSI Midterm Final Boss Practice Reviewer. Fix all bugs and TODOs, then run npm run report.",
+  "scripts": {
+    "start": "node app.js",
+    "report": "node report.js"
+  },
+  "dependencies": {
+    "express": "^4.19.0",
+    "pg": "^8.11.0",
+    "pg-mem": "^3.0.0"
+  }
+}

@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Library Loans</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 2rem; background: #10121a; color: #e8e8f0; }
+    h1 { margin-bottom: 1rem; }
+    .panels { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+    .panel { background: #1b1e2b; border: 1px solid #2c3040; border-radius: 10px; padding: 1rem 1.4rem; min-width: 160px; }
+    .panel .label { font-size: .8rem; color: #9aa0b4; text-transform: uppercase; letter-spacing: .05em; }
+    .panel .value { font-size: 1.8rem; font-weight: 700; margin-top: .3rem; }
+    table { border-collapse: collapse; width: 100%; max-width: 720px; }
+    th, td { text-align: left; padding: .4rem .7rem; border-bottom: 1px solid #2c3040; }
+    th { color: #9aa0b4; font-size: .8rem; text-transform: uppercase; }
+    .row { display: flex; gap: 1rem; align-items: flex-end; margin: 1rem 0; flex-wrap: wrap; }
+    input, button { font-size: 1rem; padding: .4rem .6rem; border-radius: 6px; border: 1px solid #2c3040; background: #1b1e2b; color: #e8e8f0; }
+    #lookupResult { margin-top: .5rem; color: #b7f0c0; }
+  </style>
+</head>
+<body>
+  <h1>Library Loans</h1>
+
+  <div class="panels">
+    <div class="panel"><div class="label">Total loans</div><div class="value" id="total">-</div></div>
+    <div class="panel"><div class="label">Most borrowed genre</div><div class="value" id="topGenre">-</div></div>
+    <div class="panel"><div class="label">Long loans (&gt;14 days)</div><div class="value" id="longLoans">-</div></div>
+    <div class="panel"><div class="label">Busiest author</div><div class="value" id="topAuthor">-</div></div>
+  </div>
+
+  <div class="row">
+    <label>Filter by genre:
+      <input id="genreInput" value="mystery" />
+    </label>
+    <button id="filterBtn">Count</button>
+    <span id="filterResult"></span>
+  </div>
+
+  <div class="row">
+    <label>Look up a loan by id:
+      <input id="idInput" value="42" />
+    </label>
+    <button id="lookupBtn">Look up</button>
+  </div>
+  <div id="lookupResult"></div>
+
+  <h2>All loans</h2>
+  <table>
+    <thead><tr><th>ID</th><th>Member</th><th>Days out</th><th>Book</th><th>Date</th></tr></thead>
+    <tbody id="rows"></tbody>
+  </table>
+
+  <script src="/app.js"></script>
+</body>
+</html>

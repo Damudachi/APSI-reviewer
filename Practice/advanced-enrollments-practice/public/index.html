@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Course Enrollments & Grades</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 2rem; background: #0f172a; color: #f8fafc; }
+    h1 { margin-bottom: 1rem; color: #38bdf8; }
+    .panels { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+    .panel { background: #1e293b; border: 1px solid #334155; border-radius: 10px; padding: 1rem 1.4rem; min-width: 160px; }
+    .panel .label { font-size: .8rem; color: #94a3b8; text-transform: uppercase; letter-spacing: .05em; }
+    .panel .value { font-size: 1.8rem; font-weight: 700; margin-top: .3rem; }
+    table { border-collapse: collapse; width: 100%; max-width: 720px; }
+    th, td { text-align: left; padding: .4rem .7rem; border-bottom: 1px solid #334155; }
+    th { color: #94a3b8; font-size: .8rem; text-transform: uppercase; }
+    .row { display: flex; gap: 1rem; align-items: flex-end; margin: 1rem 0; flex-wrap: wrap; }
+    input, button { font-size: 1rem; padding: .4rem .6rem; border-radius: 6px; border: 1px solid #334155; background: #1e293b; color: #f8fafc; }
+    #lookupResult { margin-top: .5rem; color: #4ade80; }
+  </style>
+</head>
+<body>
+  <h1>Course Enrollments & Grades (Advanced Practice)</h1>
+
+  <div class="panels">
+    <div class="panel"><div class="label">Total Enrollments</div><div class="value" id="total">-</div></div>
+    <div class="panel"><div class="label">Average Grade</div><div class="value" id="avgGrade">-</div></div>
+    <div class="panel"><div class="label">Ungraded Count</div><div class="value" id="ungraded">-</div></div>
+    <div class="panel"><div class="label">Top Instructor</div><div class="value" id="topInstructor">-</div></div>
+  </div>
+
+  <div class="row">
+    <label>Filter by department:
+      <input id="deptInput" value="History" />
+    </label>
+    <button id="filterBtn">Count</button>
+    <span id="filterResult"></span>
+  </div>
+
+  <div class="row">
+    <label>Look up an enrollment by id:
+      <input id="idInput" value="42" />
+    </label>
+    <button id="lookupBtn">Look up</button>
+  </div>
+  <div id="lookupResult"></div>
+
+  <h2>All Enrollments</h2>
+  <table>
+    <thead><tr><th>ID</th><th>Student Name</th><th>Grade Score</th><th>Course ID</th><th>Enrolled Date</th></tr></thead>
+    <tbody id="rows"></tbody>
+  </table>
+
+  <script src="/app.js"></script>
+</body>
+</html>

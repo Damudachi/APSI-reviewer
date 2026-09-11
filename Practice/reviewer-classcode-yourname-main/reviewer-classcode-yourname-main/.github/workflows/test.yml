@@ -1,0 +1,67 @@
+name: Self-check & screenshot
+
+# This does NOT grade you. It is a practice reviewer for the midterm.
+# On every push it (1) checks whether each bug and TODO is fixed, (2) prints your
+# current answers to the 10 quiz questions, and (3) saves a screenshot of your
+# dashboard. Open this run's summary to read your answers, or download the
+# **dashboard-screenshot** artifact. You do not need to run anything locally.
+on:
+  push:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install
+        run: npm ci
+
+      - name: Self-check (are the bugs fixed?)
+        run: |
+          echo '### Self-check' >> "$GITHUB_STEP_SUMMARY"
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
+          if npx vitest run --reporter=basic >> "$GITHUB_STEP_SUMMARY" 2>&1; then
+            echo '```' >> "$GITHUB_STEP_SUMMARY"
+            echo '**All checks passed - every bug and TODO is fixed.**' >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo '```' >> "$GITHUB_STEP_SUMMARY"
+            echo '**Some checks still failing - keep going. This does not affect your grade.**' >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Your current answers
+        if: always()
+        run: |
+          echo '### Your current answers (this is practice for the midterm)' >> "$GITHUB_STEP_SUMMARY"
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
+          node exam-report.mjs >> "$GITHUB_STEP_SUMMARY" 2>&1 || echo '(the app did not start - fix the errors above)' >> "$GITHUB_STEP_SUMMARY"
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Screenshot the dashboard
+        if: always()
+        run: |
+          node app.js &
+          for i in $(seq 1 40); do curl -sf -o /dev/null http://localhost:3000/ && break; sleep 0.5; done
+          npx -y playwright@1.62 install --with-deps chromium
+          npx -y playwright@1.62 screenshot --wait-for-timeout 2000 --full-page http://localhost:3000/ dashboard.png || true
+
+      - name: Upload the screenshot
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dashboard-screenshot
+          path: dashboard.png
+          if-no-files-found: warn

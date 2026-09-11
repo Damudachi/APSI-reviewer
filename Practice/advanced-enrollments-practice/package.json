@@ -1,0 +1,17 @@
+{
+  "name": "apsi-practice-course-enrollments",
+  "private": true,
+  "type": "module",
+  "description": "Advanced APSI Practice - Course Enrollments & Grades API. More TODOs and brand new SQL/Express bugs!",
+  "scripts": {
+    "start": "node app.js",
+    "report": "node report.js",
+    "exam": "node exam-report.mjs"
+  },
+  "dependencies": {
+    "express": "^4.19.0",
+    "pg": "^8.11.0",
+    "pg-mem": "^3.0.0"
+  },
+  "license": "MIT"
+}

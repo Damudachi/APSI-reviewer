@@ -1,0 +1,17 @@
+{
+  "name": "apsi-reviewer-music-plays",
+  "private": true,
+  "type": "module",
+  "description": "APSI Midterm Practice - Music Plays API and database. Solve the bugs and TODOs, then check answers with report.",
+  "scripts": {
+    "start": "node app.js",
+    "report": "node report.js",
+    "exam": "node exam-report.mjs"
+  },
+  "dependencies": {
+    "express": "^4.19.0",
+    "pg": "^8.11.0",
+    "pg-mem": "^3.0.0"
+  },
+  "license": "MIT"
+}
